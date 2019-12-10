@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Workout Tracker</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Workout tracker</h1>
+        <h2>Add to an existing workout or create a new workout!</h2>
+        <form id="userinput">
+            <input type="text" id="plan" placeholder="Plan"/>
+          <br />
+            <input type="text" id="workout" placeholder="Workout"/>
+          <br />
+          <button type="submit" id="createPlan">Create</button>
+        </form>
+        <div id="results">
+          <table id="plans">
+                <tr><th>Plan</th><th>Workout</th><th>Edit</th></tr>
+          </table>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="app.js"></script>
+    </body>
+</body>
+</html>
