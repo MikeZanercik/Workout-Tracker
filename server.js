@@ -5,7 +5,7 @@ const logger = require("logger");
 const PORT = process.env.PORT || 3000;
 
 // path to schema file
-const User = require("");
+const User = require("./models/userModels");
 const app = express();
 
 app.use(logger("dev"));

@@ -18,5 +18,5 @@ $("#createPlan").on("click", () => {
 // function that takes workout plan from database and displays it in a table
 function newPlan() {
     $("#plans").empty();
-    $.getJSON()
+    $.getJSON("/")
 }

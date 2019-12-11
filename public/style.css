@@ -1,7 +1,8 @@
 #wrapper{
     text-align: center;
 }
-#results{
+table{
     text-align: center;
     align-content: center;
+    width: 50vw;
 }
