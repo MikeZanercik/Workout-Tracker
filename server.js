@@ -1,29 +1,67 @@
 const express = require("express");
+const logger = require("morgan");
 const mongoose = require("mongoose");
-const logger = require("morgan")
 
 const PORT = process.env.PORT || 3000;
 
-// path to schema file
-const User = require("./models/userModels");
+const db = require("./models/userModels");
+
 const app = express();
 
 app.use(logger("dev"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-// ROUTES HERE
+db.Workout.create({ name: "Workout Plan" })
+  .then(dbWorkout => {
+    console.log(dbWorkout);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
 
 
-
-app.post("/submit", ({ body }, res) => {
-    User.create(body)
-      .then(dbUser => {
-        res.json(dbUser);
+  app.post("/submit", ({body}, res) => {
+    db.Book.create(body)
+      .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
+      .then(dbLibrary => {
+        res.json(dbLibrary);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
+  
+  app.get("/books", (req, res) => {
+    db.Book.find({})
+      .then(dbBook => {
+        res.json(dbBook);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
+  
+  app.get("/library", (req, res) => {
+    db.Library.find({})
+      .then(dbLibrary => {
+        res.json(dbLibrary);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
+  
+  app.get("/populated", (req, res) => {
+    db.Library.find({})
+      .populate("books")
+      .then(dbLibrary => {
+        res.json(dbLibrary);
       })
       .catch(err => {
         res.json(err);
@@ -32,5 +70,5 @@ app.post("/submit", ({ body }, res) => {
 // ==============================================
 
 app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`)
-});
+    console.log(`App running on port ${PORT}!`);
+  });

@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Workout Tracker</title>
 </head>
 
@@ -19,16 +20,40 @@
     </div>
     <div class="row">
       <div class="col-6">
-          <a href="/newPlan">Create New Plan!</a>
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="planName">Plan name</label>
+                <input type="text" class="form-control" id="planName">
+              </div>
+              <div class="form-group">
+                <label for="workout">Workout</label>
+                <input type="text" class="form-control" id="workout">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="workout">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="workout">
+              </div>
+              <button type="button" class="btn btn-primary" id="createNew">Create a New Plan</button>
+            </form>
+          </div>
+        </div>
       </div>
       <div class="col-6">
-          <a href="/existing">Update Existing Plan</a>
+        <div class="card">
+          <div class="card-body">
+
+            <button type="button" class="btn btn-primary" id="updateExisting">Update An Existing Plan</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="app.js"></script>
 </body>
 </body>
 
