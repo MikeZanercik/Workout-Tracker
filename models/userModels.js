@@ -3,17 +3,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    plan: {
+    name: {
         type: String,
-        trim: true,
-        required: "Plan name is required"
+        required: true
     },
-    Workout: {
+    workout: {
         type: String,
-        trim: true,
-        required: "workout is required"
-    }
-});
+        required: true
+    },
+})
 
 const User = mongoose.model("User", UserSchema);
 
