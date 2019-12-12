@@ -12,47 +12,18 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Workout Tracker!</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <div class="card">
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="planName">Plan name</label>
-                <input type="text" class="form-control" id="planName">
-              </div>
-              <div class="form-group">
-                <label for="workout">Workout</label>
-                <input type="text" class="form-control" id="workout">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="workout">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="workout">
-              </div>
-              <button type="button" class="btn btn-primary" id="createNew">Create a New Plan</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="card">
-          <div class="card-body">
-
-            <button type="button" class="btn btn-primary" id="updateExisting">Update An Existing Plan</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+    <body>
+        <form action="/submit" method="post">
+        <h1>Workout Tracker</h1>
+        
+          <input type="text" name="title" placeholder="Workout">
+          <textarea type="text" name="body" placeholder="Exercise"></textarea>
+    
+          <input type="submit">
+          <a href="/workout">See your workouts!</a>
+          <a href="/exercise">See your exercises!</a>
+        </form>
+      </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </body>

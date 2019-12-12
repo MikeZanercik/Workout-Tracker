@@ -17,13 +17,13 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/FitnessDB", { useNewUrlParser: true });
 
-db.Workout.create({ name: "Cardio" })
-  .then(dbWorkout => {
-    console.log(dbWorkout);
-  })
-  .catch(({message}) => {
-    console.log(message);
-  });
+// db.Workout.create({ name: "Cardio" })
+//   .then(dbWorkout => {
+//     console.log(dbWorkout);
+//   })
+//   .catch(({message}) => {
+//     console.log(message);
+//   });
 
   app.get("/exercise", (req, res) => {
     db.Exercise.find({})
@@ -39,6 +39,16 @@ db.Workout.create({ name: "Cardio" })
     db.Workout.find({})
       .then(dbWorkout => {
         res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
+  app.post("/submit", ({ body }, res) => {
+    db.Workout.create(body)
+      .then(({ _id }) => db.Exercise.findOneAndUpdate({}, { $push: { Workout: _id } }, { new: true }))
+      .then(dbExercise => {
+        res.json(dbExercise);
       })
       .catch(err => {
         res.json(err);
