@@ -17,6 +17,13 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/FitnessDB", { useNewUrlParser: true });
 
+db.Exercise.create({ name: "Monday workout", workouts: [] })
+  .then(dbExecise => {
+    console.log(dbExecise);
+  })
+  .catch(({ message }) => {
+    console.log(message);
+  });
   app.get("/exercise", (req, res) => {
     db.Exercise.find({})
       .then(dbExercise => {
@@ -27,10 +34,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/FitnessDB", { u
       });
   });
 
+
   app.get("/workout", (req, res) => {
     db.Workout.find({})
       .then(dbWorkout => {
         res.json(dbWorkout);
+        // res.render("workouts")
       })
       .catch(err => {
         res.json(err);
