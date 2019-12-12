@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models/userModels");
+const db = require("./models");
 
 const app = express();
 
@@ -15,9 +15,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/FitnessDB", { useNewUrlParser: true });
 
-db.Workout.create({ name: "Workout Plan" })
+db.Workout.create({ name: "Cardio" })
   .then(dbWorkout => {
     console.log(dbWorkout);
   })
@@ -25,10 +25,25 @@ db.Workout.create({ name: "Workout Plan" })
     console.log(message);
   });
 
+  app.get("/exercise", (req, res) => {
+    db.Exercise.find({})
+      .then(dbExercise => {
+        res.json(dbExercise);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
-// app.post("/", ({body}, res) => {
-    
-// })
+  app.get("/workout", (req, res) => {
+    db.Workout.find({})
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 // ==============================================
 
 app.listen(PORT, () => {
